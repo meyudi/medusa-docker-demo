@@ -1,5 +1,5 @@
 # Set the base image to Node 17.1.0-alpine
-FROM node:17.1.0-alpine
+FROM node:21.7.3-alpine
 
 # Set the working directory for all subsequent commands
 WORKDIR /app/storefront
@@ -12,7 +12,9 @@ COPY yarn.* .
 RUN apk update
 
 # Install the dependencies
+RUN yarn add sqlite3
 RUN yarn --network-timeout 1000000
+
 
 # Copy all files in the current directory (.) to the working directory in the container
 COPY . .
